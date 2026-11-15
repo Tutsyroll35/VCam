@@ -9,7 +9,7 @@ on:
 jobs:
   build:
     name: Build iOS Tweak
-    runs-on: macos-14
+    runs-on: macos-latest
     
     steps:
     - name: Checkout
@@ -41,6 +41,7 @@ jobs:
       run: |
         export THEOS=$HOME/theos
         export PATH=$HOME/theos/bin:$PATH
+        chmod 755 layout/DEBIAN/postinst layout/DEBIAN/postrm
         make clean
         make package FINALPACKAGE=1 2>&1
         echo "Build complete. Packages:"
